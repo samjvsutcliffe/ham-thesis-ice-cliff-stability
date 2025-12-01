@@ -15,4 +15,4 @@ export MV2_ENABLE_AFFINITY=0
 echo "Running code"
 rm output/*
 
-sbcl --dynamic-space-size 64000  --disable-debugger --load "template.lisp" --quit
+sbcl --dynamic-space-size 16000  --disable-debugger --load "ice.lisp" --quit
