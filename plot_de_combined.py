@@ -4,18 +4,19 @@ import json
 import os,re
 import numpy as np
 
-chalk_dir ="./"
-#chalk_dir = "/nobackup/rmvn14/ham-chalk-conv-fbar/"
-output_regex = re.compile("output*")
+#chalk_dir ="./"
+chalk_dir = "/nobackup/rmvn14/thesis/ice-cliff-stability/"
+#output_regex = re.compile("output-.*0.9$")
+output_regex = re.compile("output-.*1.0$")
 output_list = list(filter(output_regex.match,os.listdir(chalk_dir)))
 output_list.sort()
-with open(chalk_dir+output_list[-1]+"/settings.json") as f:
+with open(chalk_dir+output_list[0]+"/settings.json") as f:
     json_settings = json.load(f)
     thresh_energy = json_settings["CRITERIA-ENERGY"]
     thresh_oobf = json_settings["CRITERIA-OOBF"]
-    #thresh_hist = json_settings["CRITERIA-HIST"]
-    #final_step = json_settings["MAX-STEPS"]-1
     tau = 1#json_settings["DELAY-TIME"]
+#thresh_oobf = 1e-3
+#tau = 1
 fig,ax = plt.subplots()
 ax_damage = ax.twinx()
 #ax.set_ylim(0,thresh_energy*thresh_hist*2)
@@ -50,7 +51,7 @@ for i,out in enumerate(output_list):
         key_lines.append(l[0])
         key_labels.append("s = {}".format(ms))
         colour = l[0].get_color()
-        l = ax_damage.plot(time,damage,label="s = {}".format(ms),ls="--",color=colour)
+        l = ax_damage.plot(time,damage,label="s = {}".format(ms),ls="--",color=colour,marker="x")
         #lss = ax.plot(time,oobf,label="s = {}".format(ms),ls="--",c=colour)
         quasi_point = None
         #for i in range(len(df)-1):
@@ -63,8 +64,9 @@ for i,out in enumerate(output_list):
         #            quasi_point = None
         #if quasi_point:
         #    plt.axvspan(quasi_point,time[i],alpha=0.25,color=colour)
-plt.ylabel("Mass-Damage (Kg)")
-plt.xlabel("Time (s)")
+ax_damage.set_ylabel("Mass-Damage (Kg)")
+ax.set_xlabel("Time (s)")
+ax.set_ylabel("Residual")
 ax_damage.set_ylim(bottom=0,top=None)
 print(key_lines)
 ax_damage.legend(key_lines,key_labels)
