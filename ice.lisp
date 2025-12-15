@@ -73,6 +73,6 @@
                      :plotter (lambda (sim) (plot-domain))
                      :post-conv-step (lambda (sim) (plot-domain)))))
           (format t "Stability:~E ~E ~A   ~%" height flotation res)
-          (save-stabilty-data stability-dir *sim* res height flotation)
+          (save-stabilty-data stability-dir *sim* res height flotation 0d0)
           (cl-mpm/dynamic-relaxation::save-vtks *sim* output-dir 1)
           )))))
