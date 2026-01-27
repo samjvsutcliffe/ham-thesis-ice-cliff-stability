@@ -6,8 +6,9 @@ import numpy as np
 
 #chalk_dir ="./"
 chalk_dir = "/nobackup/rmvn14/thesis/ice-cliff-stability/"
-#output_regex = re.compile("output-.*0.9$")
+#output_regex = re.compile("output-.*$")
 output_regex = re.compile("output-.*1.0$")
+#output_regex = re.compile("output-1000.0.*$")
 output_list = list(filter(output_regex.match,os.listdir(chalk_dir)))
 output_list.sort()
 with open(chalk_dir+output_list[0]+"/settings.json") as f:

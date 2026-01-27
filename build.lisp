@@ -1,16 +1,18 @@
-(sb-ext:restrict-compiler-policy 'speed 3 3)
-(sb-ext:restrict-compiler-policy 'debug 0 0)
-(sb-ext:restrict-compiler-policy 'safety 0 0)
-(setf *block-compile-default* t)
-;(sb-ext:restrict-compiler-policy 'speed 0 0)
-;(sb-ext:restrict-compiler-policy 'debug 3 3)
-;(sb-ext:restrict-compiler-policy 'safety 3 3)
+;(sb-ext:restrict-compiler-policy 'speed 3 3)
+;(sb-ext:restrict-compiler-policy 'debug 0 0)
+;(sb-ext:restrict-compiler-policy 'safety 0 0)
 ;(setf *block-compile-default* t)
-(ql:quickload :local-time)
+(sb-ext:restrict-compiler-policy 'speed 0 0)
+(sb-ext:restrict-compiler-policy 'debug 3 3)
+(sb-ext:restrict-compiler-policy 'safety 3 3)
+(setf *block-compile-default* t)
 (ql:quickload :cl-mpm/examples/ice/cliff-stability)
+;(setf cl-mpm/settings::*optimise-setting* cl-mpm/settings::*optimise-speed*)
+(setf cl-mpm/settings::*optimise-setting* cl-mpm/settings::*optimise-debug*)
+(ql:quickload :local-time)
+;(asdf:compile-system :cl-mpm/examples/ice/cliff-stability :force t)
 (ql:quickload :parse-float)
 (in-package :cl-mpm/examples/ice/cliff-stability)
-(setf cl-mpm/settings::*optimise-setting* cl-mpm/settings::*optimise-speed*)
 ;(setf cl-mpm/settings::*optimise-setting* cl-mpm/settings::*optimise-debug*)
 (defun main (&optional args)
 	(load "ice.lisp"))
@@ -19,6 +21,6 @@
    "worker"
     :executable t
     :toplevel #'main
-    :compression t
+    :compression nil
     :save-runtime-options t)
 (uiop:quit)
