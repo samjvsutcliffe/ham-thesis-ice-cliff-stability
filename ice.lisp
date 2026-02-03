@@ -17,6 +17,7 @@
 (defparameter *cliff-height* (parse-float:parse-float (if (uiop:getenv "CLIFF_HEIGHT") (uiop:getenv "CLIFF_HEIGHT") "100")))
 (defparameter *floatation* (parse-float:parse-float (if (uiop:getenv "FLOATATION") (uiop:getenv "FLOATATION") "0.9")))
 
+
 (format t "Running~%")
 
 (defparameter *top-dir* (merge-pathnames "/nobackup/rmvn14/thesis/ice-cliff-stability/"))

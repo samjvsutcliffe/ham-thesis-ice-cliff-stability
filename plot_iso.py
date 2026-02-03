@@ -5,7 +5,7 @@ import os,re
 import numpy as np
 
 #chalk_dir ="./data-cliff-stability_no_stress/"
-chalk_dir ="./data-cliff-stability/"
+chalk_dir ="./data-cliff-stability_30/"
 #chalk_dir = "/nobackup/rmvn14/ham-chalk-conv-fbar/"
 output_regex = re.compile("data.*json")
 output_list = list(filter(output_regex.match,os.listdir(chalk_dir)))
